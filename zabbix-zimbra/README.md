@@ -10,6 +10,16 @@ Also copy yo-zimbra.conf to /etc/zabbix/zabbix_agentd.conf.d/ and the script fil
 
 Restart zabbix-agent and import the template to your server.
 The service discovery is set very long (1 day), so it may take very long for services to show up in Zabbix.
+The discovery command can take more than the 3s of the default command timeout, used by both agent and server/proxy. In case you see something like 
+```
+Zabbix agent item "zimbra.discovery" on host "webmail.domain.it" failed: first network error, wait for 15 seconds
+```
+you should add
+
+```
+Timeout=15
+```
+to your zabbix_server.conf or zabbix_proxy.conf.
 
 
 The bash script was inspired by [blog.linuxnet.ch](https://blog.linuxnet.ch/zimbra-monitoring-with-zabbix/). 
