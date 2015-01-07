@@ -95,7 +95,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <filter>#ZIMBRASERVICE:</filter>
+                    <filter>:</filter>
                     <lifetime>30</lifetime>
                     <description/>
                     <item_prototypes>
