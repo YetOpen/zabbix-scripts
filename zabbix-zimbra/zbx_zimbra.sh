@@ -3,7 +3,7 @@
 # Zabbix script to check Zimbra services and perform service discovery.
 # Supports Zimbra 8.6 and "two-worded" service names
 # Author: Lorenzo Milesi <maxxer@yetopen.it>
-# Copyright: YetOpen S.r.l. 2014
+# Copytight: YetOpen S.r.l. 2015
 # License: GPLv3
 
 # uncomment for debug
@@ -20,18 +20,18 @@ case "$1" in
         exit 0;
     fi
     # error
-    return 1;
+    exit 1;
     ;;
     discover) 
     # Return a list of running services in JSON
 	echo "{"
-	echo "\t\"data\":[\n"
+	echo -e "\t\"data\":[\n"
     	SRVCS=$($COMMAND status | grep Running | awk '{$(NF--)=""; print}' | sed 's/^/\t{ \"{#ZIMBRASERVICE}\":\"/' | sed 's/\ $/\" },/')
 	# Remove last comma from the sting, to make a good JSON
 	echo $(echo $SRVCS | sed 's/,\+$//')
-	echo "\n\t]\n"
+	echo -e "\n\t]\n"
 	echo "}"
-    return 0;
+    exit 0;
     ;;
     *)
     # move on...
