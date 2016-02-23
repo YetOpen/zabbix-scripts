@@ -71,7 +71,7 @@ case "$1" in
 	    mv $file.tmp $file
 	fi
 
-	STATUS="$(cat $file | grep "$check" | awk '{print $NF}')"
+	STATUS="$(cat $file | grep -w "$check" | awk '{print $NF}')"
 
 	if [ "$STATUS" != "Running" ]; then
 	  echo 0
