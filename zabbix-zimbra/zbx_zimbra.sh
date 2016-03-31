@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Zabbix script to check Zimbra services and perform service discovery.
 # Supports Zimbra 8.6 and "two-worded" service names
