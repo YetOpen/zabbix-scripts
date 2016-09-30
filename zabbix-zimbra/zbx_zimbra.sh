@@ -47,10 +47,10 @@ fork_discover() {
     # Return a list of running services in JSON
     SRVCS=$($COMMAND status | grep -v ^Host | awk '{$(NF--)=""; print}' | sed 's/^/\t{ \"{#ZIMBRASERVICE}\":\"/' | sed 's/\ $/\" },/')
     echo "{"
-    echo "\t\"data\":[\n"
+    echo -e "\t\"data\":[\n"
     # Remove last comma from the sting, to make a good JSON
     echo $(echo $SRVCS | sed 's/,\+$//')
-    echo "\n\t]\n"
+    echo -e "\n\t]\n"
     echo "}"
 }
 
