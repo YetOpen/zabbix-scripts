@@ -16,9 +16,11 @@ Zabbix agent item "zimbra.discovery" on host "webmail.domain.it" failed: first n
 ```
 you should change the `Timeout` value in zabbix_agentd.d/yo-zimbra.conf.
 
+Please note you should **change the timeout on the server/proxy** accordingly.
+
 The bash script was inspired by [blog.linuxnet.ch](https://blog.linuxnet.ch/zimbra-monitoring-with-zabbix/). 
 
 
 License & Copyright
 -------------------
-Code and documentation copyright 2016 YetOpen S.r.l.. Released under the GPLv3 license.
+Code and documentation copyright 2017 YetOpen S.r.l.. Released under the GPLv3 license.
