@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>2.0</version>
-    <date>2014-12-29T13:55:05Z</date>
+    <version>3.0</version>
+    <date>2018-02-21T20:15:51Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -11,6 +11,7 @@
         <template>
             <template>Template Zimbra Services</template>
             <name>Template Zimbra Services</name>
+            <description/>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -26,6 +27,49 @@
             </applications>
             <items>
                 <item>
+                    <name>Zimbra Queue</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zimbra.queue</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zimbra</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
                     <name>Zimbra version</name>
                     <type>0</type>
                     <snmp_community/>
@@ -34,7 +78,7 @@
                     <key>zimbra.version</key>
                     <delay>43200</delay>
                     <history>7</history>
-                    <trends>365</trends>
+                    <trends>0</trends>
                     <status>0</status>
                     <value_type>1</value_type>
                     <allowed_hosts/>
@@ -95,7 +139,11 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <filter>:</filter>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
                     <lifetime>30</lifetime>
                     <description/>
                     <item_prototypes>
@@ -143,17 +191,19 @@
                                 <name>Service state</name>
                             </valuemap>
                             <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Zimbra Services:zimbra.status[{#ZIMBRASERVICE}].last()}#1</expression>
+                            <expression>{Template Zimbra Services:zimbra.status[{#ZIMBRASERVICE}].last()}&lt;&gt;1</expression>
                             <name>Zimbra service &quot;{#ZIMBRASERVICE}&quot; not running on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>
                             <description/>
                             <type>0</type>
+                            <dependencies/>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes/>
@@ -165,4 +215,41 @@
             <screens/>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template Zimbra Services:zimbra.queue.last()}&gt;200 and {Template Zimbra Services:zimbra.queue.last()}&lt;500</expression>
+            <name>Zimbra queue greater than 200 messages</name>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Zimbra Services:zimbra.queue.last()}&gt;500</expression>
+            <name>Zimbra queue greater than 500 messages</name>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+    </triggers>
+    <value_maps>
+        <value_map>
+            <name>Service state</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
 </zabbix_export>
