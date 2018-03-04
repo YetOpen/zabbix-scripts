@@ -9,7 +9,7 @@
 # uncomment for debug
 #set -x
 
-COMMAND="sudo -u zimbra /opt/zimbra/bin/zmcontrol"
+COMMAND="sudo -H -u zimbra /opt/zimbra/bin/zmcontrol"
 FILE='/var/run/zabbix/zimbra_status'
 DISCOVER_FILE='/var/run/zabbix/zimbra_discover'
 
