@@ -81,7 +81,7 @@ case "$1" in
 
         fork_get_status &
 
-	STATUS="$(cat $FILE | grep "$check" | awk '{print $NF}')"
+	STATUS="$(cat $FILE | grep "`printf '\t'`$check " | awk '{print $NF}')"
 
 	if [ "$STATUS" != "Running" ]; then
 	  echo 0
