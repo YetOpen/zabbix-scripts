@@ -1,4 +1,4 @@
-# Zimbra monitoring with Zabbix
+# Zimbra monitoring with Zabbix
 
 This template offers services autodiscover, version tracking and service status.
 It's compatibile with Zimbra 8.6+ (and its services with spaces).
