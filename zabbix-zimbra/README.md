@@ -1,5 +1,4 @@
-Zimbra monitoring with Zabbix
-=============================
+# Zimbra monitoring with Zabbix
 
 This template offers services autodiscover, version tracking and service status.
 It's compatibile with Zimbra 8.6+ (and its services with spaces).
@@ -20,7 +19,12 @@ Please note you should **change the timeout on the server/proxy** accordingly.
 
 The bash script was inspired by [blog.linuxnet.ch](https://blog.linuxnet.ch/zimbra-monitoring-with-zabbix/). 
 
+# Zimbra Network Edition backup check
 
-License & Copyright
--------------------
-Code and documentation copyright 2017 YetOpen S.r.l.. Released under the GPLv3 license.
+This is a basic check which runs `zmbackupquery` looking for the number of completed backup in the last *n*th hours. 
+By default the template check the latest 24h, but you can change or add new check as you prefer. 
+
+In the future it can be improved with different checks for full or incremental backups.
+
+# License & Copyright
+Code and documentation copyright 2018 YetOpen S.r.l.. Released under the GPLv3 license.
